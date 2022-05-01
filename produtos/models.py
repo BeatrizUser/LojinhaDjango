@@ -13,16 +13,20 @@ class Produtos(models.Model):
         ('XL', 'Extra Large'),
     )
     SHIRTS_COLORS = (
-        ('B', 'Blue'),
-        ('Bk', 'Black'),
-        ('W', 'White'),
-        ('R', 'Red'),
+        ('blue', 'Blue'),
+        ('black', 'Black'),
+        ('white', 'White'),
+        ('red', 'Red'),
     )
-
-    title = models.CharField(max_length=250)
+    
+    id_produto = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
     description = models.CharField(max_length=250)
-    size = models.CharField(max_length=3, choices=SHIRTS_SIZES)
-    color = models.CharField(max_length=3, choices=SHIRTS_COLORS)
+    size = models.CharField(max_length=10, choices=SHIRTS_SIZES)
+    color = models.CharField(max_length=10, choices=SHIRTS_COLORS)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(
-        upload_to=upload_image_produto, blank=True, null=True)
+    image = models.ImageField(upload_to=upload_image_produto, blank=True, null=True)
+
+    class Meta:
+        ordering = ("title",)

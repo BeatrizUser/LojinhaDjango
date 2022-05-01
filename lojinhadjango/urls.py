@@ -26,7 +26,8 @@ from produtos.api import viewsets as produtosviewsets
 route = routers.DefaultRouter()
 route.register(r'produtos', produtosviewsets.ProdutosViewSet, basename="Produtos")
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(route.urls))
+    path('api', include(route.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
