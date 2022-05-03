@@ -22,12 +22,14 @@ from django.conf import settings
 from rest_framework import routers
 
 from produtos.api import viewsets as produtosviewsets
+from produtos import views
+from produtos.views import PesquisaViewSet
 
 route = routers.DefaultRouter()
-route.register('produtos', produtosviewsets.ProdutosViewSet, basename="Estoque")
-
+route.register(r'produtos', produtosviewsets.ProdutosViewSet, basename="Produtos")
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('api/', include(route.urls))
+    path('busca/', PesquisaViewSet.as_view({'get': 'list'}), name="Busca"),
+    path('api/', include(route.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
