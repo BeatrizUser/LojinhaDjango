@@ -28,6 +28,6 @@ route.register(r'produtos', produtosviewsets.ProdutosViewSet, basename="Produtos
 
 
 urlpatterns = [
-    path('', admin.site.urls),
-    path('api', include(route.urls))
+    path('admin', admin.site.urls),
+    path('', include(route.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
