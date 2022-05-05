@@ -23,13 +23,13 @@ from rest_framework import routers
 
 from produtos.api import viewsets as produtosviewsets
 from produtos import views
-from produtos.views import PesquisaViewSet
+from produtos.views import ProdutoList
 
 route = routers.DefaultRouter()
 route.register(r'produtos', produtosviewsets.ProdutosViewSet, basename="Produtos")
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('busca/', PesquisaViewSet.as_view({'get': 'list'}), name="Busca"),
+    path('busca/', ProdutoList.as_view({'get': 'list'}), name="Busca"),
     path('api/', include(route.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
