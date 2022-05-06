@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-2ug__0x_*j*m()_$q-w3becjoi8w_wu%l7=l#3cgloqj8@8=z3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://lojinha-api.herokuapp.com/ ']
 
 
 # Application definition
@@ -127,7 +127,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
